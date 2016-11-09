@@ -1,29 +1,28 @@
 package ch.fhnw.atlantis.Server;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
 
 /**
- * Created by Tobias on 02.11.2016.
+ * Created by Tobias on 02.11.2016 (if not written by Tobias, it is mentioned)
  *
- * Instantiates 42 tile objects (6 from each color) and stores them in the ArrayList "TileDeck"
+ * Creates all the ArrayLists for the Tiledeck (relevant tiles), the Watertiles and the played tiles (tiles out of the game)
+ * Contains methods that create the tile objects and put them into the respective ArrayList
  */
-public class TileDeck implements Serializable {
-
+public class TileDeck {
 
     ArrayList<Tile> PlayedTiles = new ArrayList<Tile>(); //holds the cards that are not in the game anymore;
-    ArrayList<Tile> TileDeck = new ArrayList<Tile>();
+    ArrayList<Tile> TileDeck = new ArrayList<Tile>(); //contains all the 42 tiles that are from relevance (no water)
+    ArrayList<WaterTile> WaterTileDeck = new ArrayList<WaterTile>(); //stores 42 watertiles
 
-    int s = 8;
-    TileColor tColor;
+    private int s = 8;
 
-    /*
-     * @param creates the tiledeck
+    /**
+     * @return ArrayList with all tiles that have a color and a number (no watertiles)
      */
-    public void createTileDeck() {
-        for (int i = 1; i < s; i++) {                    //do these statements need to go into a method in order to call it when a new game is started or is it fine like that?
+    public ArrayList<Tile> createTileDeck() {
+        for (int i = 1; i < s; i++) {
             if (i == 7) { //Black stack has no 7 tile
                 break;
             }
@@ -72,20 +71,39 @@ public class TileDeck implements Serializable {
             TileDeck.add(new Tile(i, TileColor.PINK));
         }
         Collections.shuffle(TileDeck);
+        return TileDeck;
     }
 
+    /**
+     * @return ArrayList that contains 42 watertiles
+     */
+    public ArrayList<WaterTile> createWaterTileDeck() {
+        for (int i = 1; i <= 42; i++) {
+            WaterTileDeck.add(new WaterTile());
+            i++;
+        }
+        return WaterTileDeck;
+    }
 
-
-    /*
-     * @param returns the ArrayList that contains the played tiles
+    /**
+     * @return ArrayList that contains the played tiles that are out of the game now
      */
     public ArrayList<Tile> getPlayedHands() {
         return PlayedTiles;
     }
 
+    /**
+     * @return ArrayList that contains the tile deck containing the tiles with colors and numbers
+     */
     public ArrayList<Tile> getTileDeck() {
         return TileDeck;
     }
 
-}
+    /**
+     * @return ArrayList that contains 42 Watertiles
+     */
+    public ArrayList<WaterTile> getWaterTileDeck() {
+        return WaterTileDeck;
+    }
 
+}

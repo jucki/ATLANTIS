@@ -3,7 +3,7 @@ package ch.fhnw.atlantis.Server;
 import java.io.Serializable;
 
 /**
- * Created by Tobias Gerhard on 02.11.2016.
+ * Created by Tobias Gerhard on 02.11.2016 (if sth. not written by Tobias, it is mentioned)
  *
  * This class defines the cards and its methods.
  */
