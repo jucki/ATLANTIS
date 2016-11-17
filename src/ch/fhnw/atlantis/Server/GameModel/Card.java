@@ -1,4 +1,4 @@
-package ch.fhnw.atlantis.Server;
+package ch.fhnw.atlantis.Server.GameModel;
 
 import java.io.Serializable;
 
@@ -14,16 +14,15 @@ public class Card implements Serializable {
     private final int cardValue; //defines the value of the card at the end of the game
     private boolean cardPlayed; //false = in players hand, true = played by the player
     private boolean cardInGame; //card is in game as soon as game is started, if player pays with card, card is out of game
-    private CardColor cColor;
-    private Card card;
+    private Color color;
 
     //Constructor for card
-    public Card(CardColor cColor) {
-        paymentValue = 1;
-        cardValue = 1;
-        cardPlayed = false;
-        cardInGame = true;
-        this.cColor = cColor;
+    public Card(Color cColor) {
+        this.paymentValue = 1;
+        this.cardValue = 1;
+        this.cardPlayed = false;
+        this.cardInGame = true;
+        this.color = cColor;
     }
 
     public int getPaymentValue() {
@@ -38,12 +37,12 @@ public class Card implements Serializable {
         this.cardPlayed = cardPlayed;
     }
 
-    public CardColor getCardColor() {
-        return cColor;
+    public Color getCardColor() {
+        return color;
     }
 
-    public void setCardColor(CardColor cColor) {
-        this.cColor = cColor;
+    public void setCardColor(Color color) {
+        this.color = color;
     }
 
     public int getCardValue() {

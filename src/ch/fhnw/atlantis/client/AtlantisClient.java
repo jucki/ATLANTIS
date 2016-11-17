@@ -18,7 +18,7 @@ public interface AtlantisClient {
     public int start();
 
 
-    public List<Tile> getTiles(int playerId);
+    public List<Tile> getTiles(int playerId);//wieso playerID als Parameter?!?!?!?!?! -> sollte Array returnen die Tiles beinhaltet -> createTileDeck()
     // Returns initially shuffled list of tiles to placed on the board
 
 
@@ -29,7 +29,7 @@ public interface AtlantisClient {
      */
 
     public Boolean isMyTurnNow(int playerId);
-    // Returns true if this playersID's turn
+    // Returns true if this playersID's turn ------> moveNumber++
 
     public GameState move(int playerId, Card card, Figure figureToMove);
     // make a move with playerID, card played and figure to move

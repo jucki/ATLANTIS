@@ -1,4 +1,4 @@
-package ch.fhnw.atlantis.Server;
+package ch.fhnw.atlantis.Server.GameModel;
 
 import java.io.Serializable;
 
@@ -12,12 +12,12 @@ public class Tile implements Serializable {
     private int tileNumber;
     private int tileValue; //defines the value a tile has which is determined by the number written on the tile
     private boolean tileInGame; //true if the tile is still on the board or in a players hand, false otherwise
-    private TileColor tColor;
+    private Color color;
     private boolean isOccupied;
 
 
-    public Tile(int tileValue, TileColor tColor) {
-        this.tColor = tColor;
+    public Tile(int tileValue, Color color) {
+        this.color = color;
         this.tileValue = tileValue;
         boolean isOccupied = false;
         boolean tileInGame = true;
@@ -31,12 +31,12 @@ public class Tile implements Serializable {
         this.tileNumber = tileNumber;
     }
 
-    public TileColor getTileColor() {
-        return tColor;
+    public Color getTileColor() {
+        return color;
     }
 
-    public void setTileColor(TileColor tColor) {
-        this.tColor = tColor;
+    public void setTileColor(Color tColor) {
+        this.color = color;
     }
 
     public int getTileValue() {
