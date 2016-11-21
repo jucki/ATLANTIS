@@ -35,18 +35,34 @@ public class Player {
         return this;
     }
 
+    /**
+     * Returns the playerID of the respective player
+     * @return playerID
+     */
     public int getPlayerID() {
         return playerID;
     }
 
+    /**
+     * Returns true if it is the player's turn, false otherwise
+     * @return myTurn
+     */
     public boolean getMyTurn() {
         return myTurn;
     }
 
+    /**
+     * Sets MyTurn attribute to true or false
+     * @param myTurn
+     */
     public void setMyTurn(boolean myTurn) {
         this.myTurn = myTurn;
     }
 
+    /**
+     * Returns the player's cardHand
+     * @return ArrayList cardHand
+     */
     public ArrayList<Card> getPlayerCardHand() {
         return cardHand.getCardHand();
     }

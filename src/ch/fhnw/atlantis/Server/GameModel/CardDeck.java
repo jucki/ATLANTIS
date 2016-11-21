@@ -17,7 +17,6 @@ public class CardDeck implements Serializable {
     private Card card;
 
     public CardDeck() {
-
     }
 
     /**
@@ -55,13 +54,15 @@ public class CardDeck implements Serializable {
     }
 
     /**
-     * @return ArrayList that contains 15 card objects per color (105 cards in total)
+     * Returns an ArrayList that contains 15 cards per color (105 cards in total)
+     * @return ArrayList
      */
     public ArrayList<Card> getCardDeck() {
         return deck;
     }
 
     /**
+     * Returns the number of cards that still is in the deck
      * @return Number of cards in Deck     *
      */
     public int getNumberOfCardsInDeck() {
@@ -69,16 +70,17 @@ public class CardDeck implements Serializable {
     }
 
     /**
+     * Returns the card from the deck that is at the specific index
      * @param num
-     * @return Card at specific index
+     * @return Card
      */
     public Card getFromCardDeckAtIndex(int num) {
         return deck.get(num);
     }
 
     /**
-     * @param player
      * Deals cards at the beginning of the game to each player
+     * @param player
      */
     public void dealCardsAtBeginning(Player player) {
         if (player.getPlayerID() == 1) {

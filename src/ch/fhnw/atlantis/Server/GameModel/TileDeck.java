@@ -12,7 +12,6 @@ import java.util.Collections;
  */
 public class TileDeck {
 
-    ArrayList<Tile> playedTiles = new ArrayList<Tile>(); //holds the cards that are not in the game anymore;
     ArrayList<Tile> tileDeck = new ArrayList<Tile>(); //contains all the 42 tiles that are from relevance (no water)
     ArrayList<WaterTile> waterTileDeck = new ArrayList<WaterTile>(); //stores 42 watertiles
 
@@ -83,13 +82,6 @@ public class TileDeck {
     }
 
     /**
-     * @return ArrayList that contains the played tiles that are out of the game now
-     */
-    public ArrayList<Tile> getPlayedHands() {
-        return playedTiles;
-    }
-
-    /**
      * @return ArrayList that contains the tile deck containing the tiles with colors and numbers
      */
     public ArrayList<Tile> getTileDeck() {
@@ -103,14 +95,18 @@ public class TileDeck {
         return waterTileDeck;
     }
 
+    /**
+     * Returns the number of tiles that are in the tiledeck
+     * @return size of tileDeck
+     */
     public int getNumberOfTilesInDeck() {
         return tileDeck.size();
     }
 
-    public int getNumberOfPlayedTiles() {
-        return playedTiles.size();
-    }
-
+    /**
+     * Returns the number of waterTiles that are still in the deck
+     * @return size of waterTileDeck
+     */
     public int getNumberOfWaterTilesInDeck() {
         return waterTileDeck.size();
     }

@@ -31,7 +31,7 @@ public class GameModel {
         cardDeck.dealCardsAtBeginning(player1);
         cardDeck.dealCardsAtBeginning(player2);
         tileDeck.createTileDeck();
-        tileDeck.createWaterTileDeck();
+        waterTileDeck.createWaterTileDeck();
     }
 
     public Player getPlayer(int playerID) {

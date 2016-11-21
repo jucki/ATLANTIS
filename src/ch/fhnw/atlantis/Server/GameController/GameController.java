@@ -16,6 +16,12 @@ public class GameController {
         this.gameModel = gameModel;
     }
 
+
+    // GameLogic like that?!?!?!?!
+    public boolean isMyTurn(int playerID) {
+        return gameModel.getPlayer(playerID).getMyTurn();
+    }
+
     /*
     public void start() {
 

@@ -22,6 +22,12 @@ public class Game {
         gameModel.getPlayer(2).setMyTurn(false);
         System.out.println(gameModel.getPlayer(2).getMyTurn());
 
+        System.out.println("Player1 has so many cards in its hand: " + gameModel.getPlayer(1).getPlayerCardHand().size());
+        System.out.println("Player2 has so many cards in its hand: " + gameModel.getPlayer(2).getPlayerCardHand().size()); //Why can't I apply the method getCardTotal() from the CardHand class?
+
+        System.out.println("WaterTileDeck contains: " + gameModel.getWaterTileDeck().size());
+        System.out.println("CardDeck contains: " + gameModel.getCardDeck().size());
+
     }
 
 }

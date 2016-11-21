@@ -9,6 +9,7 @@ public class TileHand {
 
     private boolean isEmpty;
 
+    //Constructor
     public TileHand() {
         ArrayList<Tile> tileHand = new ArrayList();
         if (tileHand.size() < 0) {
@@ -19,10 +20,18 @@ public class TileHand {
         }
     }
 
+    /**
+     * Defines if tileHand is empty (true) or not (false)
+     * @param isEmpty
+     */
     public void setIsEmpty(boolean isEmpty) {
         this.isEmpty = isEmpty;
     }
 
+    /**
+     * Returns whether the tileHand is empty (true) or not (false)
+     * @return isEmpty
+     */
     public boolean getIsEmpty() {
         return isEmpty;
     }

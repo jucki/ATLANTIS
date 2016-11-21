@@ -24,26 +24,50 @@ public class Figure {
         }
     }
 
+    /**
+     * Returns the index at which the figure is right now
+     * @return atIndex
+     */
     public int getAtIndex() {
         return atIndex;
     }
 
+    /**
+     * Sets the index at which the figure is
+     * @param atIndex
+     */
     public void setAtIndex(int atIndex) {
         this.atIndex = atIndex;
     }
 
+    /**
+     * Returns true if the figure has left atlantis, false otherwise
+     * @return leftAtlantis
+     */
     public boolean getLeftAtlantis() {
         return leftAtlantis;
     }
 
+    /**
+     * Sets if the figure has left atlantis (true) or not (false)
+     * @param leftAtlantis
+     */
     public void setLeftAtlantis(boolean leftAtlantis) {
         this.leftAtlantis = leftAtlantis;
     }
 
+    /**
+     * Returns true if the figure has reached mainland or false otherwise
+     * @return reachedMainland
+     */
     public boolean getReachedMainland() {
         return reachedMainland;
     }
 
+    /**
+     * Sets true if mainland is reached, false otherwise
+     * @param reachedMainland
+     */
     public void setReachedMainland(boolean reachedMainland) {
         this.reachedMainland = reachedMainland;
     }
