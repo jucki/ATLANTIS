@@ -82,14 +82,14 @@ public class CardDeck implements Serializable {
      */
     public void dealCardsAtBeginning(Player player) {
         if (player.getPlayerID() == 1) {
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 4; i++) {
                 card = deck.get(0);
                 player.getPlayerCardHand().add(card);
                 deck.remove(0);
             }
         }
         else {
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 5; i++) {
                 card = deck.get(0);
                 player.getPlayerCardHand().add(card);
                 deck.remove(0);

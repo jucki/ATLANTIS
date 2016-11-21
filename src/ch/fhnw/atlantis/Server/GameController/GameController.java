@@ -1,6 +1,7 @@
 package ch.fhnw.atlantis.Server.GameController;
 
 import ch.fhnw.atlantis.Server.GameModel.CardDeck;
+import ch.fhnw.atlantis.Server.GameModel.GameModel;
 import ch.fhnw.atlantis.Server.GameModel.Player;
 import ch.fhnw.atlantis.Server.GameModel.TileDeck;
 
@@ -9,20 +10,22 @@ import ch.fhnw.atlantis.Server.GameModel.TileDeck;
  */
 public class GameController {
 
+    GameModel gameModel;
 
-    Player player1 = new Player(1); //instantiates a new player object with playerID 1. Also creates new playerHand
-    Player player2 = new Player(2); //instantiates a new player object with playerID 2. also creates new playerHand
-    CardDeck cardDeck = new CardDeck(); //new CardDeck Object that contains references to ArrayList cDeck and ArrayList playedCards;
-    TileDeck tileDeck = new TileDeck(); //new tileDeck Object that contains references to ArrayList playedTiles, waterTilesDeck, and tileDeck
-    TileDeck waterTileDeck = new TileDeck(); //new tileDeck Object that contains references to ArrayList playedTiles, waterTilesDeck, and tileDeck
+    public GameController(GameModel gameModel) {
+        this.gameModel = gameModel;
+    }
 
+    /*
     public void start() {
+
         tileDeck.createTileDeck();
         waterTileDeck.createWaterTileDeck();
         cardDeck.createCardDeck();
         cardDeck.dealCardsAtBeginning(player1);
         cardDeck.dealCardsAtBeginning(player2);
     }
+    */
 
 
 //Game Logic comes here...
@@ -59,4 +62,5 @@ public class GameController {
     private boolean checkIfOccupied(int indexToCheck) {
     }
 */
+
 }
