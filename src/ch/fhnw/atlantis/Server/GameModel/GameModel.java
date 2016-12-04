@@ -1,5 +1,6 @@
 package ch.fhnw.atlantis.Server.GameModel;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -42,16 +43,16 @@ public class GameModel {
         }
     }
 
-    public ArrayList<Tile> getTileDeck() {
-        return tileDeck.getTileDeck();
+    public TileDeck getTileDeck() {
+        return tileDeck;
     }
 
-    public ArrayList<Card> getCardDeck() {
-        return cardDeck.getCardDeck();
+    public CardDeck getCardDeck() {
+        return cardDeck;
     }
 
-    public ArrayList<WaterTile> getWaterTileDeck() {
-        return waterTileDeck.getWaterTileDeck();
+    public TileDeck getWaterTileDeck() {
+        return waterTileDeck;
     }
 
 }

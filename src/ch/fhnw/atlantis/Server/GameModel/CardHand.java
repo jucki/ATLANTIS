@@ -4,23 +4,23 @@ import java.util.ArrayList;
 
 /**
  * Created by Tobias on 03.11.2016 (if sth. not written by Tobias, it is mentioned)
+ *
+ * 30.11.2016 I just realized that this class is not really necessary, such a list could also be created directly in the Player constructor
  */
 public class CardHand {
 
-    private ArrayList<Card> cardHand = new ArrayList<Card>();
+    private ArrayList<Card> cards = new ArrayList<Card>();
     private int cardTotal;
     private boolean isEmpty;
 
     //Constructor
     public CardHand() {
-        cardTotal = cardHand.size();
+        cardTotal = cards.size();
         if (cardTotal > 0) {
             isEmpty = false;
         } else {
             isEmpty = true;
         }
-
-
     }
 
     /**
@@ -28,7 +28,7 @@ public class CardHand {
      * @return ArrayList
      */
     public ArrayList<Card> getCardHand() {
-        return cardHand;
+        return cards;
     }
 
     /**

@@ -21,9 +21,9 @@ public class Player {
         this.playerID = playerID;
         cardHand = new CardHand();
         tileHand = new TileHand();
-        figure1 = new Figure(this, 1);
-        figure2 = new Figure(this, 2);
-        figure3 = new Figure(this, 3);
+        this.figure1 = new Figure(this, 1);
+        this.figure2 = new Figure(this, 2);
+        this.figure3 = new Figure(this, 3);
         if (this.playerID == 1) { //player1 always starts the game
             myTurn = true;
         } else {
@@ -31,6 +31,11 @@ public class Player {
         }
     }
 
+    /**
+     * Returns the playerID
+     * @param playerID
+     * @return playerID
+     */
     public Player getPlayer(int playerID) {
         return this;
     }
@@ -63,13 +68,23 @@ public class Player {
      * Returns the player's cardHand
      * @return ArrayList cardHand
      */
-    public ArrayList<Card> getPlayerCardHand() {
-        return cardHand.getCardHand();
+    public CardHand getPlayerCardHand() {
+        return cardHand;
     }
 
-    /*
-    public Figure getFigure(int figureNumber) {
-        return this.Figure;
+    public Figure getFigure(Figure figure) {
+        if (figure.getFigureNumber() == 1) {
+            return figure1;
+        } else if (figure.getFigureNumber() == 2) {
+            return figure2;
+        } else if (figure.getFigureNumber() == 3) {
+            return figure3;
+        }
+        return null;
     }
-    */
+
+    public TileHand getPlayerTileHand() {
+        return tileHand;
+    }
+
 }

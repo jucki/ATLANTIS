@@ -32,7 +32,9 @@ public interface AtlantisClient {
     // Returns true if this playersID's turn ------> moveNumber++
 
     public GameState move(int playerId, Card card, Figure figureToMove);
-    // make a move with playerID, card played and figure to move
+    // make a move with playerID, card pl
+    //
+    // ayed and figure to move
 
     public GameState pay(int playerId, List<Tile> tiles);
     // pay for water with list of tiles to pay

@@ -14,13 +14,15 @@ public class Tile implements Serializable {
     private boolean tileInGame; //true if the tile is still on the board or in a players hand, false otherwise
     private Color color;
     private boolean isOccupied;
+    private boolean isWater;
 
     //Constructor
     public Tile(int tileValue, Color color) {
         this.color = color;
         this.tileValue = tileValue;
-        boolean isOccupied = false;
-        boolean tileInGame = true;
+        isOccupied = false;
+        tileInGame = true;
+        isWater = false;
     }
 
     /**
@@ -101,6 +103,14 @@ public class Tile implements Serializable {
      */
     public void setIsOccupied(boolean isOccupied) {
         this.isOccupied = isOccupied;
+    }
+
+    /**
+     * Attribute that defines that this tile is not water, always returns false
+     * @return isWater
+     */
+    public boolean getIsWater() {
+        return isWater;
     }
 
 }

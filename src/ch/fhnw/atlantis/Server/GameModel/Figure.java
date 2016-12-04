@@ -72,4 +72,20 @@ public class Figure {
         this.reachedMainland = reachedMainland;
     }
 
+    /**
+     * Returns false if figure reached mainland and therefore is not in the game anymore
+     * @return !reachedMainland
+     */
+    public boolean isFigureInGame() {
+        return !reachedMainland;
+    }
+
+    public Figure getFigure(Figure figure) {
+        return this;
+    }
+
+    public int getFigureNumber() {
+        return figureNumber;
+    }
+
 }

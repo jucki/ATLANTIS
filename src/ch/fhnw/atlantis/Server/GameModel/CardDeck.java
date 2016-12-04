@@ -57,7 +57,7 @@ public class CardDeck implements Serializable {
      * Returns an ArrayList that contains 15 cards per color (105 cards in total)
      * @return ArrayList
      */
-    public ArrayList<Card> getCardDeck() {
+    public ArrayList<Card> getCardsFromCardDeck() {
         return deck;
     }
 
@@ -86,14 +86,14 @@ public class CardDeck implements Serializable {
         if (player.getPlayerID() == 1) {
             for (int i = 0; i < 4; i++) {
                 card = deck.get(0);
-                player.getPlayerCardHand().add(card);
+                player.getPlayerCardHand().getCardHand().add(card); //2.12.16, had to add .getCardHand() in order that the add()-method works
                 deck.remove(0);
             }
         }
         else {
             for (int i = 0; i < 5; i++) {
                 card = deck.get(0);
-                player.getPlayerCardHand().add(card);
+                player.getPlayerCardHand().getCardHand().add(card); //2.12.16, had to add .getCardHand() in order that the add()-method works
                 deck.remove(0);
             }
         }

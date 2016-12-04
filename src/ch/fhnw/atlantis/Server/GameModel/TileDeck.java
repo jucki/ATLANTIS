@@ -13,7 +13,7 @@ import java.util.Collections;
 public class TileDeck {
 
     ArrayList<Tile> tileDeck = new ArrayList<Tile>(); //contains all the 42 tiles that are from relevance (no water)
-    ArrayList<WaterTile> waterTileDeck = new ArrayList<WaterTile>(); //stores 42 watertiles
+    ArrayList<WaterTile> waterTiles = new ArrayList<WaterTile>(); //stores 42 watertiles
 
     private int s = 8;
 
@@ -29,7 +29,7 @@ public class TileDeck {
         }
 
         for (int i = 1; i < s; i++) {
-            if (i == 6) { //Brown stack has no 6 tile
+            if (i == 6) { //Brown stack has no 6 tile, i++ jumps the 6th tile
                 i++;
             }
             tileDeck.add(new Tile(i, Color.BROWN));
@@ -50,7 +50,7 @@ public class TileDeck {
         }
 
         for (int i = 1; i < s; i++) {
-            if (i == 6) { //Green stack has no 6
+            if (i == 6) { //Green stack has no 6, i++ jumps the 6th tile
                 i++;
             }
             tileDeck.add(new Tile(i, Color.GREEN));
@@ -64,7 +64,7 @@ public class TileDeck {
         }
 
         for (int i = 1; i < s; i++) {
-            if (i == 6) { //Pink stack has no 6
+            if (i == 6) { //Pink stack has no 6, i++ jumps the 6th tile
                 i++;
             }
             tileDeck.add(new Tile(i, Color.PINK));
@@ -76,23 +76,23 @@ public class TileDeck {
      * creates ArrayList with 42 watertiles in it
      */
     public void createWaterTileDeck() {
-        for (int i = 1; i <= 42; i++) {
-            waterTileDeck.add(new WaterTile());
+        for (int i = 1; i <= 42; i++) { //42 as random, could be more or also less, but to be safe 42 tiles
+            waterTiles.add(new WaterTile());
         }
     }
 
     /**
      * @return ArrayList that contains the tile deck containing the tiles with colors and numbers
      */
-    public ArrayList<Tile> getTileDeck() {
+    public ArrayList<Tile> getTiles() {
         return tileDeck;
     }
 
     /**
      * @return ArrayList that contains 42 Watertiles
      */
-    public ArrayList<WaterTile> getWaterTileDeck() {
-        return waterTileDeck;
+    public ArrayList<WaterTile> getWaterTiles() {
+        return waterTiles;
     }
 
     /**
@@ -108,6 +108,6 @@ public class TileDeck {
      * @return size of waterTileDeck
      */
     public int getNumberOfWaterTilesInDeck() {
-        return waterTileDeck.size();
+        return waterTiles.size();
     }
 }
