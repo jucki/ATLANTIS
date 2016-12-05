@@ -21,9 +21,9 @@ public class Player {
         this.playerID = playerID;
         cardHand = new CardHand();
         tileHand = new TileHand();
-        this.figure1 = new Figure(this, 1);
-        this.figure2 = new Figure(this, 2);
-        this.figure3 = new Figure(this, 3);
+        figure1 = new Figure(this, 1);
+        figure2 = new Figure(this, 2);
+        figure3 = new Figure(this, 3);
         if (this.playerID == 1) { //player1 always starts the game
             myTurn = true;
         } else {

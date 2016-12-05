@@ -19,7 +19,7 @@ public class GameController {
     private Player player, p1 ,p2;
     private Card c;
     private Tile t;
-    private Figure f;
+    private Figure f, figure1, figure2, figure3;
     private TileDeck td = gameModel.getTileDeck();    //is this good practice?
     private TileHand th;
     private ListIterator<Tile> tileDeckIterator = gameModel.getTileDeck().getTiles().listIterator(); //okay like that or should I define it in the method?
@@ -33,7 +33,7 @@ public class GameController {
     /****************************************************************************************************************/
     /*______________________________________________________________________________________________________________*/
     /*                                                                                                              */
-    /*                                              Move Methods                                                    */
+    /*                                          Move, Buy & Pay Methods                                             */
     /*                                                                                                              */
     /****************************************************************************************************************/
 
@@ -44,7 +44,7 @@ public class GameController {
      * @param figure
      * @param card
      */
-    public void move(int playerID, Figure figure, Card card) { //Tile not necessary because I check where the next this-colored tile is
+    public void moveStepOne(int playerID, Figure figure, Card card) { //Tile not necessary because I check where the next this-colored tile is
         if (checkMethod(playerID, figure, card) == true) {
             moveExecutionMethod(playerID, card, figure);
         } else {
@@ -54,13 +54,45 @@ public class GameController {
 
     /*
     public void moveAgain(int playerID, Card card, Figure figure) {
-        if (checkMethodAgain (playerID, card, figure) == true) {
+        if (checkMethod(playerID, figure, card) == true) { //how can I make it that it takes the same figure as before?
             moveExecutioMethod(playerID, figure, card);
         } else {
-            moveDenialMethod(playerID, card, figure):
+            moveDenialMethod(playerID, card, figure);
         }
     }
     */
+
+
+    public void payWaterCrossingWithTile(int playerID, Tile... tile) { //tiles have to be taken out of tilehand
+        int tilesValue = 0;
+        for (Tile t : tile) {
+            tilesValue += t.getTileValue(); //increments variable tilesValue by the tiles' value for each tile given as argument
+            gameModel.getPlayer(playerID).getPlayerTileHand().getTileHand().remove(t); //removes the respective tile from the player's tileHand
+        }
+    }
+
+    /**
+     * Method is responsible for the watercrossing payment. Counts which each card given as argument 1+, then removes the card out of the player's cardHand
+     * @param playerID
+     * @param card
+     */
+    public void payWaterCrossingWithCard(int playerID, Card... card) { //wie kann ich DIE particular card nehmen, die für den move gewählt wurde?
+        int cardsValue = 0;
+        for (Card c : card) {
+            cardsValue++; //increments variable cardValue by 1 for each card given as argument
+            gameModel.getPlayer(playerID).getPlayerCardHand().getCardHand().remove(c); //removes the respective card from the player's hand
+        }
+    }
+
+    public void buyCard(int playerID, Tile tile) {
+        int i = 0;
+        int numberOfCards = tile.getTileValue() / 2; //calculates how many cards the player gets (since it is an integer, uneven numbers are rounded
+        while (i < numberOfCards) {
+            c = gameModel.getCardDeck().getCardsFromCardDeck().get(0); //stores the object at index 0 in the card variable
+            gameModel.getPlayer(playerID).getPlayerCardHand().getCardHand().add(c); //adds the card to the player's cardhand
+            gameModel.getCardDeck().getCardsFromCardDeck().remove(0); //removes the object at index 0 from the carddeck
+        }
+    }
 
 
     /****************************************************************************************************************/
@@ -132,7 +164,7 @@ public class GameController {
      * @param card
      * @param figure
      */
-    public void moveExecutionMethod(int playerID, Card card, Figure figure) {
+    public void moveExecutionMethod(int playerID, Card card, Figure figure) { //The order of these methods is important
         findNextTileFigureCanGoTo(card, figure);
         calculateWaterCrossingPrice(card, figure);
         pickUpTileAndReplaceWithWater(playerID, card, figure);
@@ -176,7 +208,7 @@ public class GameController {
             if (reverseTileDeckIterator.previous().getIsWater() == true) { //"stops" when it hits a waterTile
                 int u = reverseTileDeckIterator.previous().getTileValue(); //stores the value of the previous tile in variable u
                 int v = reverseTileDeckIterator.next().getTileValue(); //stores the value of the next tile in variable v
-                    if (v > u) { //compares both values and stores the larger of those in the toBePaid variable
+                    if (v < u) { //compares both values and stores the larger of those in the toBePaid variable
                         toBePaid += v;
                     } else {
                         toBePaid +=u;
@@ -186,6 +218,7 @@ public class GameController {
         }
         return toBePaid;
     }
+
 
     /**
      * This method picks up the tile that is behind the figure (and that is not water) and replaces this particular tile with water
@@ -197,6 +230,7 @@ public class GameController {
         t = findNextTileFigureCanGoTo(card, figure); //finds the nex tile to which a figure can go to
         int i = td.getTiles().indexOf(t); //gets the index of this tile t, which is the next tile the figure can go to and stores it in i
         ListIterator<Tile> reverseTileDeckIterator = gameModel.getTileDeck().getTiles().listIterator(i); //creates ListIterator and defines where to start iterating
+
         while (reverseTileDeckIterator.hasPrevious()) { //iterates through the path
             if (reverseTileDeckIterator.previous().getIsOccupied() == false && reverseTileDeckIterator.previous().getIsWater() == false) { //Checks the condition
                 gameModel.getPlayer(playerID).getPlayerTileHand().getTileHand().add(reverseTileDeckIterator.previous()); //adds this particular tile to the player's TileHand
@@ -237,13 +271,37 @@ public class GameController {
     }
 
     /**
-     * Adds 1 card to respective player's cardhand and then deletes the
+     * Adds 1 card to respective player's cardhand and then deletes the card out of the carddeck
+     * Adds 2 cards to respective player's cardhand when he has 1 player on mainland
+     * Adds 3 cards to respective player's cardhand when he has 2 players on mainland
      * @param playerID
      */
     public void drawCard(int playerID) {
-        c = gameModel.getCardDeck().getCardsFromCardDeck().get(0); //stores the object at index 0 in the card variable
-        gameModel.getPlayer(playerID).getPlayerCardHand().getCardHand().add(c); //adds the card to the player's cardhand
-        gameModel.getCardDeck().getCardsFromCardDeck().remove(0); //removes the object at index 0 from the carddeck
+        Figure f1 = gameModel.getPlayer(playerID).getFigure(figure1);
+        Figure f2 = gameModel.getPlayer(playerID).getFigure(figure2);
+        Figure f3 = gameModel.getPlayer(playerID).getFigure(figure3);
+        int i = 1;
+        if (f1.getReachedMainland() == false && f2.getReachedMainland() == false && f3.getReachedMainland() == false) {
+            c = gameModel.getCardDeck().getCardsFromCardDeck().get(0); //stores the object at index 0 in the card variable
+            gameModel.getPlayer(playerID).getPlayerCardHand().getCardHand().add(c); //adds the card to the player's cardhand
+            gameModel.getCardDeck().getCardsFromCardDeck().remove(0); //removes the object at index 0 from the carddeck
+        } else if (f1.getReachedMainland() == true || f2.getReachedMainland() == true || f3.getReachedMainland() == true){
+            while (i <= 2) { //player has to take 2 cards if 1 figure is on mainland yet
+                c = gameModel.getCardDeck().getCardsFromCardDeck().get(0); //stores the object at index 0 in the card variable
+                gameModel.getPlayer(playerID).getPlayerCardHand().getCardHand().add(c); //adds the card to the player's cardhand
+                gameModel.getCardDeck().getCardsFromCardDeck().remove(0); //removes the object at index 0 from the carddeck
+                i++;
+            }
+        } else if ((f1.getReachedMainland() == true && f2.getReachedMainland() == true) || (f2.getReachedMainland() == true && f3.getReachedMainland() == true) ||
+                (f3.getReachedMainland() == true && f1.getReachedMainland() == true)); {
+            while (i <= 3) { //player has to draw 3 cards if 2 figures are on mainland yet
+                c = gameModel.getCardDeck().getCardsFromCardDeck().get(0); //stores the object at index 0 in the card variable
+                gameModel.getPlayer(playerID).getPlayerCardHand().getCardHand().add(c); //adds the card to the player's cardhand
+                gameModel.getCardDeck().getCardsFromCardDeck().remove(0); //removes the object at index 0 from the carddeck
+                i++;
+            }
+        }
+
     }
 
     /**
