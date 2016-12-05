@@ -14,6 +14,7 @@ public class CardDeck implements Serializable {
     final int s = 15; //amount of cards per color
 
     private ArrayList<Card> deck = new ArrayList<Card>();
+    private ArrayList<Card> playedCardsDeck = new ArrayList<Card>();
     private Card card;
 
     public CardDeck() {
@@ -54,14 +55,6 @@ public class CardDeck implements Serializable {
     }
 
     /**
-     * Returns an ArrayList that contains 15 cards per color (105 cards in total)
-     * @return ArrayList
-     */
-    public ArrayList<Card> getCardsFromCardDeck() {
-        return deck;
-    }
-
-    /**
      * Returns the number of cards that still is in the deck
      * @return Number of cards in Deck     *
      */
@@ -97,6 +90,18 @@ public class CardDeck implements Serializable {
                 deck.remove(0);
             }
         }
+    }
+
+    /**
+     * Returns an ArrayList that contains 15 cards per color (105 cards in total)
+     * @return ArrayList
+     */
+    public ArrayList<Card> getCardsFromCardDeck() {
+        return deck;
+    }
+
+    public ArrayList<Card> getPlayedCardsDeck() {
+        return playedCardsDeck;
     }
 
 }

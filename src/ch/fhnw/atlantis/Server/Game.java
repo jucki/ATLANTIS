@@ -26,7 +26,7 @@ public class Game {
 
         System.out.println("WaterTileDeck contains: " + gameModel.getWaterTileDeck().getWaterTiles().size());
         System.out.println("CardDeck contains: " + gameModel.getCardDeck().getCardsFromCardDeck().size());
-        System.out.println("TileDeck contains: " + gameModel.getTileDeck().getTiles().size());
+        System.out.println("TileDeck contains (with additional waterTile: " + gameModel.getTileDeck().getTiles().size());
         gameModel.getTileDeck().getTiles().remove(12);
         System.out.println("TileDeck now contains: " + gameModel.getTileDeck().getTiles().size());
 
@@ -36,6 +36,7 @@ public class Game {
         gameController.updateTurnStatus();
         System.out.println(gameController.isMyTurn(2));
         System.out.println(gameController.isMyTurn(1));
+
 
 
     }

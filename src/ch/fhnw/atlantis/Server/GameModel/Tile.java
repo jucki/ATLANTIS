@@ -16,13 +16,18 @@ public class Tile implements Serializable {
     private boolean isOccupied;
     private boolean isWater;
 
-    //Constructor
+    //Constructor for regular tile
     public Tile(int tileValue, Color color) {
         this.color = color;
         this.tileValue = tileValue;
         isOccupied = false;
         tileInGame = true;
         isWater = false;
+    }
+
+    //Constructor for watertile
+    public Tile(boolean isWater) {
+        this.isWater = isWater;
     }
 
     /**

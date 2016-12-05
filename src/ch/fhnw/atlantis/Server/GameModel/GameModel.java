@@ -33,6 +33,8 @@ public class GameModel {
         cardDeck.dealCardsAtBeginning(player2);
         tileDeck.createTileDeck();
         waterTileDeck.createWaterTileDeck();
+
+        tileDeck.getTiles().add(21, waterTileDeck.getWaterTiles().get(0)); //places the waterTile in the middle of the path
     }
 
     public Player getPlayer(int playerID) {

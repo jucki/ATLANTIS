@@ -2,6 +2,7 @@ package ch.fhnw.atlantis.Server.GameModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 
 /**
@@ -13,7 +14,7 @@ import java.util.Collections;
 public class TileDeck {
 
     ArrayList<Tile> tileDeck = new ArrayList<Tile>(); //contains all the 42 tiles that are from relevance (no water)
-    ArrayList<WaterTile> waterTiles = new ArrayList<WaterTile>(); //stores 42 watertiles
+    ArrayList<Tile> waterTiles = new ArrayList<Tile>(); //stores 42 watertiles
 
     private int s = 8;
 
@@ -77,7 +78,7 @@ public class TileDeck {
      */
     public void createWaterTileDeck() {
         for (int i = 1; i <= 42; i++) { //42 as random, could be more or also less, but to be safe 42 tiles
-            waterTiles.add(new WaterTile());
+            waterTiles.add(new Tile(true));
         }
     }
 
@@ -91,7 +92,7 @@ public class TileDeck {
     /**
      * @return ArrayList that contains 42 Watertiles
      */
-    public ArrayList<WaterTile> getWaterTiles() {
+    public ArrayList<Tile> getWaterTiles() {
         return waterTiles;
     }
 

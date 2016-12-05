@@ -29,7 +29,6 @@ public class GameController {
         this.gameModel = gameModel;
     }
 
-
     /****************************************************************************************************************/
     /*______________________________________________________________________________________________________________*/
     /*                                                                                                              */
@@ -37,14 +36,13 @@ public class GameController {
     /*                                                                                                              */
     /****************************************************************************************************************/
 
-
     /**
      * This is the move method and somewhat like the heart of the entire Game
      * @param playerID
      * @param figure
      * @param card
      */
-    public void moveStepOne(int playerID, Figure figure, Card card) { //Tile not necessary because I check where the next this-colored tile is
+    public void move(int playerID, Figure figure, Card card) { //Tile not necessary because I check where the next this-colored tile is
         if (checkMethod(playerID, figure, card) == true) {
             moveExecutionMethod(playerID, card, figure);
         } else {
@@ -52,16 +50,13 @@ public class GameController {
         }
     }
 
-    /*
     public void moveAgain(int playerID, Card card, Figure figure) {
         if (checkMethod(playerID, figure, card) == true) { //how can I make it that it takes the same figure as before?
-            moveExecutioMethod(playerID, figure, card);
+            moveExecutionMethod(playerID, card, figure);
         } else {
             moveDenialMethod(playerID, card, figure);
         }
     }
-    */
-
 
     public void payWaterCrossingWithTile(int playerID, Tile... tile) { //tiles have to be taken out of tilehand
         int tilesValue = 0;
@@ -85,7 +80,7 @@ public class GameController {
     }
 
     public void buyCard(int playerID, Tile tile) {
-        int i = 0;
+        int i = 1;
         int numberOfCards = tile.getTileValue() / 2; //calculates how many cards the player gets (since it is an integer, uneven numbers are rounded
         while (i < numberOfCards) {
             c = gameModel.getCardDeck().getCardsFromCardDeck().get(0); //stores the object at index 0 in the card variable
@@ -101,7 +96,6 @@ public class GameController {
     /*                                                 Check Methods                                                */
     /*                                                                                                              */
     /****************************************************************************************************************/
-
 
     public boolean checkMethod(int playerID, Figure figure, Card card) {
         if (isFigureInGame(playerID, figure) == true && isPlayerAbleToPay(playerID, figure, card) == true) {
@@ -127,7 +121,6 @@ public class GameController {
         }
     }
 
-
     /**
      * This method checks whether the respective player has enough money in form of tiles OR cards in order to pay all the water crossings
      * @param playerID
@@ -148,8 +141,6 @@ public class GameController {
             return false;
         }
     }
-
-
 
     /****************************************************************************************************************/
     /*______________________________________________________________________________________________________________*/
@@ -172,7 +163,8 @@ public class GameController {
         updateTileStatus(card, figure);
         updateFigureStatus(playerID, figure, card);
         drawCard(playerID);
-        updateTurnStatus();
+        checkCardStackAndShuffle();
+        updateTurnStatus(); //has to be the last method since it is in a thread on the client side
     }
 
     /****************************************************************************************************************/
@@ -186,9 +178,11 @@ public class GameController {
         while (tileDeckIterator.hasNext()) {
             t = tileDeckIterator.next();
             if (card.getCardColor() == t.getTileColor() && gameModel.getTileDeck().getTiles().indexOf(t) > figure.getAtIndex());
-            return t;
+                //if (t.getIsOccupied() == true) {
+                 //   moveAgainMethod(figure, ); ////////////////////////////////////////////////////////////////////////////////////////////////
+                //};
         }
-        return null;
+        return t;
     }
 
     /**
@@ -219,7 +213,6 @@ public class GameController {
         return toBePaid;
     }
 
-
     /**
      * This method picks up the tile that is behind the figure (and that is not water) and replaces this particular tile with water
      * @param playerID
@@ -234,7 +227,7 @@ public class GameController {
         while (reverseTileDeckIterator.hasPrevious()) { //iterates through the path
             if (reverseTileDeckIterator.previous().getIsOccupied() == false && reverseTileDeckIterator.previous().getIsWater() == false) { //Checks the condition
                 gameModel.getPlayer(playerID).getPlayerTileHand().getTileHand().add(reverseTileDeckIterator.previous()); //adds this particular tile to the player's TileHand
-                td.getTiles().set(reverseTileDeckIterator.previousIndex() + 1, gameModel.getWaterTileDeck().getTiles().get(0)); //replaces the tile in the tiledeck with a watertile. + 1 because previous(ndex() returns the index of the subsequent tile
+                td.getTiles().set(reverseTileDeckIterator.previousIndex() + 1, gameModel.getWaterTileDeck().getWaterTiles().get(0)); //replaces the tile in the tiledeck with a watertile. + 1 because previous(ndex() returns the index of the subsequent tile
             }
         }
     }
@@ -262,12 +255,13 @@ public class GameController {
     }
 
     /**
-     * Removes the card object given as argument from the player's cardHand
+     * Removes the card object given as argument from the player's cardHand and adds it to the played cards stack
      * @param playerID
      * @param card
      */
     public void removeCardFromHand(int playerID, Card card) {
-        gameModel.getPlayer(playerID).getPlayerCardHand().getCardHand().remove(card);
+        gameModel.getCardDeck().getPlayedCardsDeck().add(card); //adds this particular card to the played cards stack
+        gameModel.getPlayer(playerID).getPlayerCardHand().getCardHand().remove(card); //removes this particular card from the player's cardHand
     }
 
     /**
@@ -319,6 +313,18 @@ public class GameController {
     }
 
     /**
+     * This method checks the size of the cards that are still in the stack, if this size equals 0, the cards that are not in the game anymore are shuffled and act as new stack (in the old list)
+     */
+    public void checkCardStackAndShuffle() {
+        if (gameModel.getCardDeck().getCardsFromCardDeck().size() == 0) { //checks size
+            Collections.shuffle(gameModel.getCardDeck().getPlayedCardsDeck()); //shuffles the cards that are not in the game anymore
+            for (int i = 0; i < gameModel.getCardDeck().getPlayedCardsDeck().size(); i++) {
+                gameModel.getCardDeck().getCardsFromCardDeck().add(i, gameModel.getCardDeck().getPlayedCardsDeck().get(i)); //adds the cards from the "thrown away"-stack to the regular one
+            }
+        }
+    }
+
+    /**
      * This method changes the isMyTurn variable after the turn
      */
     public void updateTurnStatus() {
@@ -332,7 +338,6 @@ public class GameController {
             p2.setMyTurn(true);
         }
     }
-
 
     /****************************************************************************************************************/
     /*______________________________________________________________________________________________________________*/
@@ -350,7 +355,6 @@ public class GameController {
         return null;
     }
 
-
     /****************************************************************************************************************/
     /*______________________________________________________________________________________________________________*/
     /*                                                                                                              */
@@ -361,7 +365,5 @@ public class GameController {
     public boolean isMyTurn(int playerID) {
         return gameModel.getPlayer(playerID).getMyTurn();
     }
-
-
 
 }

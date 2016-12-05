@@ -2,6 +2,8 @@ package ch.fhnw.atlantis.Server.GameModel;
 
 /**
  * Created by Tobias on 09.11.2016 (if sth. not written by Tobias, it is mentioned)
+ *
+ * 5.12. I just realized that this class is unneccessary and causes troubles
  */
 public class WaterTile {
 
