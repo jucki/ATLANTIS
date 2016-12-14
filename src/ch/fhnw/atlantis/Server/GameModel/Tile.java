@@ -1,6 +1,7 @@
 package ch.fhnw.atlantis.Server.GameModel;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Tobias Gerhard on 02.11.2016 (if sth. not written by Tobias, it is mentioned)
@@ -15,6 +16,8 @@ public class Tile implements Serializable {
     private Color color;
     private boolean isOccupied;
     private boolean isWater;
+    private int boardTileIndex; //index of the tile in the ArrayList
+    private ArrayList<Tile> tileDeck = new ArrayList<Tile>();
 
     //Constructor for regular tile
     public Tile(int tileValue, Color color) {
@@ -23,6 +26,7 @@ public class Tile implements Serializable {
         isOccupied = false;
         tileInGame = true;
         isWater = false;
+        boardTileIndex = tileDeck.indexOf(this); //shows the index at which the tile is
     }
 
     //Constructor for watertile
@@ -116,6 +120,10 @@ public class Tile implements Serializable {
      */
     public boolean getIsWater() {
         return isWater;
+    }
+
+    public int getBoardTileIndex() {
+        return boardTileIndex;
     }
 
 }

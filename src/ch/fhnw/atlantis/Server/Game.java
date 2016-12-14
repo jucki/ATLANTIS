@@ -16,8 +16,6 @@ public class Game {
         gameModel.getPlayer(2).setMyTurn(true);
         System.out.println(gameModel.getPlayer(2).getMyTurn());
 
-        System.out.println("Test: " + gameController);
-
         gameModel.getPlayer(2).setMyTurn(false);
         System.out.println(gameModel.getPlayer(2).getMyTurn());
 
@@ -31,11 +29,11 @@ public class Game {
         System.out.println("TileDeck now contains: " + gameModel.getTileDeck().getTiles().size());
 
         System.out.println("::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-        System.out.println(gameController.isMyTurn(2));
-        System.out.println(gameController.isMyTurn(1));
+        System.out.println(gameController.isMyTurnNow(2));
+        System.out.println(gameController.isMyTurnNow(1));
         gameController.updateTurnStatus();
-        System.out.println(gameController.isMyTurn(2));
-        System.out.println(gameController.isMyTurn(1));
+        System.out.println(gameController.isMyTurnNow(2));
+        System.out.println(gameController.isMyTurnNow(1));
 
 
 
