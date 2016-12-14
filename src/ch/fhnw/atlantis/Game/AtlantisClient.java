@@ -1,11 +1,11 @@
-package ch.fhnw.atlantis.Server;
+package ch.fhnw.atlantis.Game;
 
 import java.util.List;
 
-import ch.fhnw.atlantis.Server.GameModel.Card;
-import ch.fhnw.atlantis.Server.GameModel.GameState;
-import ch.fhnw.atlantis.Server.GameModel.Tile;
-import ch.fhnw.atlantis.Server.GameModel.Figure;
+import ch.fhnw.atlantis.Game.Model.Card;
+import ch.fhnw.atlantis.Game.Model.GameState;
+import ch.fhnw.atlantis.Game.Model.Tile;
+import ch.fhnw.atlantis.Game.Model.Figure;
 
 
 /**
@@ -65,7 +65,7 @@ public interface AtlantisClient {
 	 * @param playerId
 	 * @return true if it is player's move, false otherwise
 	 */
-	public Boolean isMyTurnNow(int playerId);
+	public boolean isMyTurnNow(int playerId);
 
 
     /**

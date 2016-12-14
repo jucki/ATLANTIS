@@ -1,4 +1,4 @@
-package ch.fhnw.atlantis.Server.GameModel;
+package ch.fhnw.atlantis.Game.Model;
 
 /**
  * Created by Tobias on 18.11.2016.

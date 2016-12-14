@@ -1,7 +1,4 @@
-package ch.fhnw.atlantis.Server.GameModel;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+package ch.fhnw.atlantis.Game.Model;
 
 /**
  * Created by Tobias on 20.11.2016(if sth. not written by Tobias, it is mentioned)

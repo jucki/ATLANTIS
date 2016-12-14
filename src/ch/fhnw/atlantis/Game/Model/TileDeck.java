@@ -1,8 +1,8 @@
-package ch.fhnw.atlantis.Server.GameModel;
+package ch.fhnw.atlantis.Game.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
 
 
 /**
@@ -11,7 +11,9 @@ import java.util.Objects;
  * Creates all the ArrayLists for the Tiledeck (relevant tiles), the Watertiles and the played tiles (tiles out of the game)
  * Contains methods that create the tile objects and put them into the respective ArrayList
  */
-public class TileDeck {
+public class TileDeck implements Serializable {
+
+    private static final long serialVersionUID = 162534L;
 
     ArrayList<Tile> tileDeck = new ArrayList<Tile>(); //contains all the 42 tiles that are from relevance (no water)
     ArrayList<Tile> waterTiles = new ArrayList<Tile>(); //stores 42 watertiles

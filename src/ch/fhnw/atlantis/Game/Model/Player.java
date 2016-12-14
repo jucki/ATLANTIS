@@ -1,11 +1,13 @@
-package ch.fhnw.atlantis.Server.GameModel;
+package ch.fhnw.atlantis.Game.Model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  * Created by Tobias on 11.11.2016 (if sth. not written by Tobias, it is mentioned)
  */
-public class Player {
+public class Player implements Serializable {
+
+    private static final long serialVersionUID = 876543L;
 
     private CardHand cardHand;
     private TileHand tileHand;
@@ -72,12 +74,33 @@ public class Player {
         return cardHand;
     }
 
+    /**
+     * Returns respective figure
+     * @param figure
+     * @return
+     */
     public Figure getFigure(Figure figure) {
         if (figure.getFigureNumber() == 1) {
             return figure1;
         } else if (figure.getFigureNumber() == 2) {
             return figure2;
         } else if (figure.getFigureNumber() == 3) {
+            return figure3;
+        }
+        return null;
+    }
+
+    /**
+     * Returns respective figure
+     * @param figureNumber
+     * @return figure
+     */
+    public Figure getFigure(int figureNumber) {
+        if (figureNumber == 1) {
+            return figure1;
+        } else if (figureNumber == 2) {
+            return figure2;
+        } else if (figureNumber == 3) {
             return figure3;
         }
         return null;

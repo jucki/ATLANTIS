@@ -1,4 +1,4 @@
-package ch.fhnw.atlantis.Server.GameModel;
+package ch.fhnw.atlantis.Game.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,8 +11,9 @@ import java.util.Collections;
  */
 public class CardDeck implements Serializable {
 
-    final int s = 15; //amount of cards per color
+    private static final long serialVersionUID = 456789L;
 
+    final int s = 15; //amount of cards per color
     private ArrayList<Card> deck = new ArrayList<Card>();
     private ArrayList<Card> playedCardsDeck = new ArrayList<Card>();
     private Card card;

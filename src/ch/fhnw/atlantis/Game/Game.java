@@ -1,7 +1,7 @@
-package ch.fhnw.atlantis.Server;
+package ch.fhnw.atlantis.Game;
 
-import ch.fhnw.atlantis.Server.GameController.GameController;
-import ch.fhnw.atlantis.Server.GameModel.*;
+import ch.fhnw.atlantis.Game.Controller.GameController;
+import ch.fhnw.atlantis.Game.Model.*;
 
 /**
  * Created by Tobias on 10.11.2016 (if sth. not written by Tobias, it is mentioned)

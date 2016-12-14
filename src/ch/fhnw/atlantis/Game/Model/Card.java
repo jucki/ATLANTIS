@@ -1,4 +1,4 @@
-package ch.fhnw.atlantis.Server.GameModel;
+package ch.fhnw.atlantis.Game.Model;
 
 import java.io.Serializable;
 
@@ -9,6 +9,8 @@ import java.io.Serializable;
  */
 
 public class Card implements Serializable {
+
+    private static final long serialVersionUID = 345678L;
 
     private final int paymentValue; //defines the value of a card during the game
     private final int cardValue; //defines the value of the card at the end of the game

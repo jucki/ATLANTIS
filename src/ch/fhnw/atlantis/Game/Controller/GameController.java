@@ -1,7 +1,7 @@
-package ch.fhnw.atlantis.Server.GameController;
+package ch.fhnw.atlantis.Game.Controller;
 
-import ch.fhnw.atlantis.Server.AtlantisClient;
-import ch.fhnw.atlantis.Server.GameModel.*;
+import ch.fhnw.atlantis.Game.AtlantisClient;
+import ch.fhnw.atlantis.Game.Model.*;
 
 import java.util.*;
 
@@ -42,7 +42,7 @@ public class GameController implements AtlantisClient {
      * @param figure
      * @param card
      */
-    public GameState move(int playerID, Figure figure, Card card) { //Tile not necessary because I check where the next this-colored tile is //public GameModel?
+    public GameState move(int playerID, Figure figure, Card card) { //Tile not necessary because I check where the next this-colored tile is //public Model?
         gameState.setGameState(false, 0, true, true, true, false); //resets gameState-Object's attributes
         if (checkMethod(playerID, figure, card) == true) {
             moveExecutionMethod(playerID, card, figure);
@@ -186,11 +186,11 @@ public class GameController implements AtlantisClient {
      */
     public GameState moveExecutionMethod(int playerID, Card card, Figure figure) { //The order of these methods is important
         findNextTileFigureCanGoTo(card, figure);
+        updateFigureStatus(playerID, figure, card);
         calculateWaterCrossingPrice(card, figure);
         pickUpTileAndReplaceWithWater(playerID, card, figure);
         removeCardFromHand(playerID, card);
         updateTileStatus(card, figure);
-        updateFigureStatus(playerID, figure, card);
         drawCard(playerID);
         checkCardStackAndShuffle();
         updateTurnStatus(); //has to be the last method since it is in a thread on the client side
@@ -306,6 +306,16 @@ public class GameController implements AtlantisClient {
     public void updateFigureStatus(int playerID, Figure figure, Card card) {
         f = gameModel.getPlayer(playerID).getFigure(figure);
         //change leftAtlantis
+
+        figure1 = gameModel.getPlayer(playerID).getFigure(1);
+        figure2 = gameModel.getPlayer(playerID).getFigure(2);
+        figure3 = gameModel.getPlayer(playerID).getFigure(3);
+
+        //resets all the lastMoved attributes to false
+        figure1.setLastMoved(false);
+        figure2.setLastMoved(false);
+        figure3.setLastMoved(false);
+
         if (f.getLeftAtlantis() == false) { //sets the figure's leftAtlantis attribute to true with the 1st move
             f.setLeftAtlantis(true);
         }
@@ -317,6 +327,8 @@ public class GameController implements AtlantisClient {
         if (f.getAtIndex() > gameModel.getTileDeck().getTiles().size()) { //sets reachedMainland to true if figure is at a higher index than the size of the tileDeck is
             f.setReachedMainland(true);
         }
+
+        gameModel.getPlayer(playerID).getFigure(figure).setLastMoved(true); //sets "lastMoved" boolean attribute of the last moved figure (this) to true
     }
 
     /** DONE
@@ -489,7 +501,7 @@ public class GameController implements AtlantisClient {
     /*______________________________________________________________________________________________________________*/
     /*                                                                                                              */
     /*                                           Interface/Jonas' Methods                                           */
-    /*          Some of these methods refer to methods that already existed in my GameController when we            */
+    /*          Some of these methods refer to methods that already existed in my Controller when we            */
     /*                     implemented this interface, therefore, not sure if best-practice, but:                   */
     /*                                 if it looks stupid but works, it is not stupid                               */
     /*                                                                                                              */
@@ -522,7 +534,7 @@ public class GameController implements AtlantisClient {
     }
 
     @Override //DONE
-    public Boolean isMyTurnNow(int playerId) {
+    public boolean isMyTurnNow(int playerId) {
         return gameModel.getPlayer(playerId).getMyTurn();
     }
 

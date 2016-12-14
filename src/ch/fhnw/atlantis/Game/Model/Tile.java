@@ -1,4 +1,4 @@
-package ch.fhnw.atlantis.Server.GameModel;
+package ch.fhnw.atlantis.Game.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,6 +9,8 @@ import java.util.ArrayList;
  * This class defines the tiles and its methods.
  */
 public class Tile implements Serializable {
+
+    private static final long serialVersionUID = 765432L;
 
     private int tileNumber;
     private int tileValue; //defines the value a tile has which is determined by the number written on the tile

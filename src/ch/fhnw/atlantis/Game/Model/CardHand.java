@@ -1,5 +1,6 @@
-package ch.fhnw.atlantis.Server.GameModel;
+package ch.fhnw.atlantis.Game.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,9 @@ import java.util.ArrayList;
  *
  * 30.11.2016 I just realized that this class is not really necessary, such a list could also be created directly in the Player constructor
  */
-public class CardHand {
+public class CardHand implements Serializable {
+
+    private static final long serialVersionUID = 987654L;
 
     private ArrayList<Card> cards = new ArrayList<Card>();
     private int cardTotal;

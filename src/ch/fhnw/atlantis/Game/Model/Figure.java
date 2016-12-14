@@ -1,21 +1,28 @@
-package ch.fhnw.atlantis.Server.GameModel;
+package ch.fhnw.atlantis.Game.Model;
+
+import java.io.Serializable;
 
 /**
  * Created by Tobias on 17.11.2016.
  */
-public class Figure {
+public class Figure implements Serializable {
+
+    private static final long serialVersionUID = 234567L;
 
     private int atIndex;
     private boolean leftAtlantis;
     private boolean reachedMainland;
     private FigureColor color;
     private int figureNumber;
+    private boolean lastMoved; //defines whether this figure has been moved with the last move
 
     public Figure(Player player, int figureNumber) {
         this.figureNumber = figureNumber;
         atIndex = -1;
         leftAtlantis = false;
         reachedMainland = false;
+        lastMoved = false;
+
         if (player.getPlayerID() == 1) {
             color = FigureColor.SILVER;
         }
@@ -86,6 +93,14 @@ public class Figure {
 
     public int getFigureNumber() {
         return figureNumber;
+    }
+
+    public void setLastMoved(boolean lastMoved) {
+        this.lastMoved = lastMoved;
+    }
+
+    public boolean getLastMoved() {
+        return lastMoved;
     }
 
 }

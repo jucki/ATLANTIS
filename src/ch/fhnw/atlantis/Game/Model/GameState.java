@@ -1,4 +1,6 @@
-package ch.fhnw.atlantis.Server.GameModel;
+package ch.fhnw.atlantis.Game.Model;
+
+import java.io.Serializable;
 
 /**
  * 
@@ -6,7 +8,9 @@ package ch.fhnw.atlantis.Server.GameModel;
  *
  */
 
-public class GameState {
+public class GameState implements Serializable {
+
+    private static final long serialVersionUID = 123456L;
 
 	private boolean playAnotherCard;
 	private int pay;
