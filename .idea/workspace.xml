@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39bf660f-f4c8-4a83-9891-3d8079041177" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ch/fhnw/atlantis/Server/AtlantisClient.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ch/fhnw/atlantis/Server/GameModel/GameState.java" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/ch/fhnw/atlantis/client/AtlantisClient.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/ch/fhnw/atlantis/client/mock/MockServer.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/ch/fhnw/atlantis/client/model/Card.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/ch/fhnw/atlantis/client/model/Figure.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/ch/fhnw/atlantis/client/model/GameState.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/ch/fhnw/atlantis/client/model/Tile.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/ch/fhnw/atlantis/view/core/core/AtlantisViewMain.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ch/fhnw/atlantis/Server/Game.java" afterPath="$PROJECT_DIR$/src/ch/fhnw/atlantis/Server/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ch/fhnw/atlantis/Server/GameController/GameController.java" afterPath="$PROJECT_DIR$/src/ch/fhnw/atlantis/Server/GameController/GameController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ch/fhnw/atlantis/Server/GameModel/Tile.java" afterPath="$PROJECT_DIR$/src/ch/fhnw/atlantis/Server/GameModel/Tile.java" />
     </list>
     <ignored path="ATLANTIS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,8 +85,8 @@
       <file leaf-file-name="AtlantisClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ch/fhnw/atlantis/Server/AtlantisClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+            <state relative-caret-position="170">
+              <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -792,7 +790,7 @@
       <workItem from="1480011990649" duration="16000" />
       <workItem from="1480346219679" duration="904000" />
       <workItem from="1480418622898" duration="3073000" />
-      <workItem from="1480446478478" duration="135903000" />
+      <workItem from="1480446478478" duration="136133000" />
     </task>
     <task id="LOCAL-00001" summary="Some classes created by me (Tobias), some of them are not done yet (most)">
       <created>1478621729268</created>
@@ -857,11 +855,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480959107907</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added a GameState Class and made some changes in the Controller, also implemented the interface to this class and extended the interface">
+      <created>1481725394287</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1481725394287</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="278644000" />
+    <option name="totallyTimeSpent" value="278874000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -910,7 +915,8 @@
     <MESSAGE value="Added and changed some stuff" />
     <MESSAGE value="Added and changed some stuff, especially comments" />
     <MESSAGE value="Added approx. 90% of the first part of the gamecontroller. After the first tests, the gamecontroller will increase." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added approx. 90% of the first part of the gamecontroller. After the first tests, the gamecontroller will increase." />
+    <MESSAGE value="Added a GameState Class and made some changes in the Controller, also implemented the interface to this class and extended the interface" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a GameState Class and made some changes in the Controller, also implemented the interface to this class and extended the interface" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1703,8 +1709,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ch/fhnw/atlantis/Server/AtlantisClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+        <state relative-caret-position="170">
+          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
